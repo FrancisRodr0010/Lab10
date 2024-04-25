@@ -12,17 +12,20 @@ import ListGroup from 'react-bootstrap/ListGroup';
 function app() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState('');
+  const [count, setCount] = useState(0);
 
   // CONTROL PARA BORRAR TAREAS
   const deleteTask = (id) => {
     let filteredTasks = [...tasks].filter((tasks) => tasks.id !== id);
     setTasks(filteredTasks);
     console.log('task deleted');
+    setCount(count - 1);
   };
 
   // CONTROL PARA AGREGAR TAREAS (ID PARA ESPECIFICAR QUE TAREA ELIMINAR)
   const handleSubmit = (event) => {
     event.preventDefault();
+    setCount(count + 1);
     const addTask = {
       id: Math.floor(Math.random() * 1000),
       text: input,
@@ -36,6 +39,7 @@ function app() {
     <Stack direction="horizontal" gap={3}>
       <div className="container my-5">
         <h4 className="title-page"> Task DashBoard</h4>
+        <h5 className="title-page"> No. de tareas: {count} </h5>
         <form onSubmit={handleSubmit}>
           <Form.Control
             value={input}
