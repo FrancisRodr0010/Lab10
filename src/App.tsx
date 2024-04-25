@@ -35,11 +35,18 @@ function app() {
     setInput('');
   };
 
+  const deleteAllTasks = (event) => {
+    event.preventDefault();
+    setCount(0);
+    setTasks([]);
+  };
+
   return (
     <Stack direction="horizontal" gap={3}>
       <div className="container my-5">
         <h4 className="title-page"> Task DashBoard</h4>
         <h5 className="title-page"> No. de tareas: {count} </h5>
+
         <form onSubmit={handleSubmit}>
           <Form.Control
             value={input}
@@ -53,6 +60,13 @@ function app() {
             Add task
           </Button>{' '}
           {/* Añadido type="submit" para que el botón realice el envío del formulario */}
+        </form>
+
+        <form onSubmit={deleteAllTasks}>
+          <p></p>
+          <Button variant="warning" type="submit">
+            Delete all tasks
+          </Button>
         </form>
         <p></p>
         <div>
